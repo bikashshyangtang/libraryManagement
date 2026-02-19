@@ -1,0 +1,71 @@
+@model List<BookViewModel>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h2>Books</h2>
+<a href="@Url.Action("Create", "Book")" class="btn btn-primary mb-3">Add Book</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Published Year</th>
+            <th>Author</th>
+            <th>Branch</th>
+            <th>ISBN</th>
+            <th>Available</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Genre</td>
+                <td>@book.PublishedDate.ToString()</td>
+                <td>@book.AuthorName</td>
+                <td>@book.BranchName</td>
+                <td>@book.ISBN</td>
+                <td>@book.IsAvailable</td>
+                <td>
+                    <span>
+                        <a href="@Url.Action("Edit","Book", new{bookId = book.BookId})" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                    </span>
+                    &nbsp;
+                    <span>
+                        <a href="#" onclick="deleteBook(@book.BookId)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </span>
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        function deleteBook(Id){
+            $.ajax({
+                type: 'POST',
+                url:'@Url.Action("Delete","Book")',
+                data:{ bookId : Id},
+                success: function(response){
+                    if(response.success){
+                        alert(response.message);
+                        window.location.reload();
+                    }
+                    else{
+                        alert(response.message);
+                    }
+                },
+                error: function(){
+                    alert("Error occurred");
+                }
+            });
+        }
+    </script>
+}
+

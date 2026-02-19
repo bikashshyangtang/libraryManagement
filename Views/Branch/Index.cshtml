@@ -1,0 +1,61 @@
+@model List<BranchViewModel>;
+@{
+    ViewData["Title"] = "Branches";
+}
+
+<h2>Branches</h2>
+<a href="@Url.Action("Create", "Branch")" class="btn btn-primary mb-3">Add Branch</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Branch Name</th>
+            <th>Location</th>
+            <th>Contact Number</th>
+            <th>Librarian</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var branch in Model)
+        {
+            <tr>
+                <td>@branch.BranchName</td>
+                <td>@branch.Location</td>
+                <td>@branch.ContactNumber</td>
+                <td>@branch.Librarian</td>
+                <td>
+                     <span>
+                        <a href="@Url.Action("Edit","Branch", new{branchId = branch.BranchId})" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                    </span>
+                    <span>
+                        <a href="#" onclick="deleteBranch(@branch.BranchId)" class="btn btn-sm btn-danger"><i class="fas fa-edit"></i></a>
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        function deleteBranch(Id){
+            $.ajax({
+                type: 'POST',
+                url:'@Url.Action("Delete","Branch")',
+                data:{ branchId : Id},
+                success: function(response){
+                    if(response.success){
+                        alert(response.message);
+                        window.location.reload();
+                    }
+                    else{
+                        alert(response.message);
+                    }
+                },
+                error: function(){
+                    alert("Error occurred");
+                }
+            });
+        }
+    </script>
+}

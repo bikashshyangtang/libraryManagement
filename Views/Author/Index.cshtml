@@ -1,0 +1,63 @@
+@model List<AuthorViewModel>
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<h2>Authors</h2>
+<a href="@Url.Action("Create", "Author")" class="btn btn-primary mb-3">Add Author</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Award Winner</th>
+            <th>Best Seller</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.FirstName</td>
+                <td>@author.LastName</td>
+                <td>@author.Email</td>
+                <td>@author.IsAwardWinner</td>
+                <td>@author.IsBestSeller</td>
+                <td>
+                     <span>
+                        <a href="@Url.Action("Edit","Author", new{authId = author.AuthorId})" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                    </span>
+                    <span>
+                        <a href="#" onclick="deleteAuthor(@author.AuthorId)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+     <script>
+        function deleteAuthor(Id){
+            $.ajax({
+                type: 'POST',
+                url:'@Url.Action("Delete","Author")',
+                data:{ authorId : Id},
+                success: function(response){
+                    if(response.success){
+                        alert(response.message);
+                        window.location.reload();
+                    }
+                    else{
+                        alert(response.message);
+                    }
+                },
+                error: function(){
+                    alert("Error occurred");
+                }
+            });
+        }
+    </script>
+}

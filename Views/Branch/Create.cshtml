@@ -1,0 +1,30 @@
+@model BranchViewModel;
+@{
+    ViewData["Title"] = "Create Branch";
+}
+
+<h2>Add New Branch</h2>
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="BranchName" class="form-label">Branch Name</label>
+        <input asp-for="BranchName" class="form-control" />
+        <span asp-validation-for="BranchName" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Location" class="form-label">Location</label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ContactNumber" class="form-label">Contact Number</label>
+        <input asp-for="ContactNumber" class="form-control" />
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Librarian" class="form-label">Librarian</label>
+        <input asp-for="Librarian" class="form-control" />
+        <span asp-validation-for="Librarian" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

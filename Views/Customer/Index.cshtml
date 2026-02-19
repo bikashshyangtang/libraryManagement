@@ -1,0 +1,63 @@
+@model List<CustomerViewModel>
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h2>Customers</h2>
+<a href="@Url.Action("Create", "Customer")" class="btn btn-primary mb-3">Add Customer</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            @* <th>Middle Name</th> *@
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                @* <td>@customer.MiddleName</td> *@
+                <td>@customer.LastName</td>
+                <td>@customer.Email</td>
+                <td>@customer.PhoneNumber</td>
+                <td>
+                    <span>
+                        <a href="@Url.Action("Edit","Customer", new{customerId = customer.CustomerId})" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                    </span>
+                    <span>
+                        <a href="#" onclick="deleteCustomer(@customer.CustomerId)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        function deleteCustomer(Id){
+            $.ajax({
+                type: 'POST',
+                url:'@Url.Action("Delete","Customer")',
+                data:{ customerId : Id},
+                success: function(response){
+                    if(response.success){
+                        alert(response.message);
+                        window.location.reload();
+                    }
+                    else{
+                        alert(response.message);
+                    }
+                },
+                error: function(){
+                    alert("Error occurred");
+                }
+            });
+        }
+    </script>
+}
