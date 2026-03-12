@@ -1,25 +1,16 @@
-/[Bb]in/
-/[Oo]bj/
+# Build folders
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
 .vs/
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.dll
-bin/Debug/net10.0/libraryManagement.exe
-bin/Debug/net10.0/libraryManagement.pdb
-DataBase/LibrabryManagement.db-shm
-DataBase/LibrabryManagement.db-wal
-obj/Debug/net10.0/apphost.exe
-obj/Debug/net10.0/libraryManagement.AssemblyInfo.cs
-obj/Debug/net10.0/libraryManagement.AssemblyInfoInputs.cache
-obj/Debug/net10.0/libraryManagement.csproj.FileListAbsolute.txt
-obj/Debug/net10.0/libraryManagement.dll
-obj/Debug/net10.0/libraryManagement.pdb
-obj/Debug/net10.0/rjsmcshtml.dswa.cache.json
-obj/Debug/net10.0/rjsmrazor.dswa.cache.json
-obj/Debug/net10.0/rpswa.dswa.cache.json
-obj/Debug/net10.0/ref/libraryManagement.dll
-obj/Debug/net10.0/refint/libraryManagement.dll
+*.user
+*.userosscache
+*.sln.docstates
+
+# SQLite temporary files (important for your Library project!)
+*.db-shm
+*.db-wal
+
+# If you want to ignore the main database itself (optional)
+# DataBase/LibrabryManagement.db
