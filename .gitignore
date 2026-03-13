@@ -1,3 +1,16 @@
-/[Bb]in/
-/[Oo]bj/
+# Build folders
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
 .vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# SQLite temporary files (important for your Library project!)
+*.db-shm
+*.db-wal
+
+# If you want to ignore the main database itself (optional)
+# DataBase/LibrabryManagement.db
